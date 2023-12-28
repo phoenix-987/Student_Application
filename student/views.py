@@ -1,18 +1,18 @@
-from .models import Student
+from .models import StudentData
 from django.http import JsonResponse
 from django.shortcuts import HttpResponse
 
 # Create your views here.
-STUDENT = Student()
+STUDENT = StudentData()
 
 
 def get_data(request):
     if request.method == 'GET':
         try:
-            pk = request.GET.get('pk')
-            details = Student.objects.get(pk=pk)
+            pk = request.GET.get('id')
+            details = StudentData.objects.get(pk=pk)
             data = {'id': details.id, 'name': details.name, 'age': details.age, 'address': details.address}
-            # print(data)
+            print(data)
 
             return JsonResponse(data)
         except Exception as e:
